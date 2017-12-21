@@ -1,0 +1,22 @@
+{% extends "_layout.html" %}
+{% block body %}
+<center>
+
+  <div class="search_form">
+    <form action="/jukebox/search" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Search" />
+    </form>
+  </div>
+  <div class="playlist">
+    {% for track in tracks %}
+      {{ track.artist }} - {{ track.name }} -
+      <form action="/jukebox/remove" method="POST" style="display: inline-block;">
+        <input type="hidden" name="track_id" value="{{ track.id }}" />
+        <input type="submit" value="Remove" />
+      </form>
+      <br />
+    {% endfor %}
+  </div>
+</center>
+{% endblock %}
